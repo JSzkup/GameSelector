@@ -61,9 +61,7 @@ HANGMANPICS = ['''
 
 class Hangman:
     def __init__(self, words):
-        #  Initializes the game state
-        #  
-        #  Selects the secret word
+        #  Initializes the game state & selects a secret word
 
         self.missedLetters = ''
         self.correctLetters = ''
@@ -113,10 +111,8 @@ class Hangman:
 
     def checkWin(self):
         # Returns True if the user has won, False otherwise
-        # 
         # Checks if the user has correctly guessed the secret word
         
-
         for i in range(len(self.secretWord)):
             if self.secretWord[i] not in self.correctLetters:
                 return False
@@ -127,10 +123,8 @@ class Hangman:
         return True
 
     def checkLost(self):
-        # Returns True if the user has lost, False otherwise.
-        # 
-        # Alerts the user if all his chances have been used, without
-        # guessing the secret word.
+        # Returns True if the user has lost, False otherwise. 
+        # Alerts the user if all his chances have been used
 
         if len(self.missedLetters) == len(HANGMANPICS) - 1:
             self.displayBoard()
