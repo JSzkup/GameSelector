@@ -1,13 +1,5 @@
 import random
 
-
-x = ' '
-BOARD = [
-    [x,x,x],
-    [x,x,x],
-    [x,x,x]
-]
-
 class TicTacToe():
     def __init__(self):
         print("INIT")

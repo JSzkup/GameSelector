@@ -1,4 +1,4 @@
-from gallows import *
+from games.gallows import *
 
 def play_again():
     # Returns True if the player wants to play again, false otherwise
