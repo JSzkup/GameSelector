@@ -10,7 +10,7 @@ def play_again():
 def main():
     # Main application entry point
 
-    # TODO make this work with more than just hangman
+    # TODO Find out WHY this doesnt work
     # print("What game would you like to play?")
     # print("1. Hangman")
     # print("2. Tic-Tac-Toe")

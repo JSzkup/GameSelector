@@ -5,7 +5,7 @@ class TicTacToe():
         print("INIT")
         #initiate the program
 
-    def displayBoard(self):
+    def displayBoard(board):
         print('   |   |')
         print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
         print('   |   |')
@@ -17,6 +17,12 @@ class TicTacToe():
         print('   |   |')
         print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
         print('   |   |')
+
+    def startingMove():
+        if random.randint(0, 1) == 1:
+            return 'player'
+        else:
+            return 'comp'
 
     def getTurn(self, already_played):
         while True:
@@ -31,7 +37,6 @@ class TicTacToe():
             else:
                 return play
 
-
     def aiTurn(self, already_played):
         while True:
             aiPlay = random.randint(0,9)
@@ -39,11 +44,19 @@ class TicTacToe():
                 aiPlay = random.randint(0,9) # TODO make sure this actually loops until it gets one thats not already played
             else:
                 return aiPlay
+            
+    def makeMove(board, letter, play, aiplay):
+        board[move] = letter
            
-
-    def checkWin():
-
-        return True
+    def endConditions(ecks, ohs):
+        return ((ohs[7] == ecks and ohs[8] == ecks and ohs[9] == ecks) or # across the top
+            (ohs[4] == ecks and ohs[5] == ecks and ohs[6] == ecks) or     # across the middle
+            (ohs[1] == ecks and ohs[2] == ecks and ohs[3] == ecks) or     # across the bottom
+            (ohs[7] == ecks and ohs[4] == ecks and ohs[1] == ecks) or     # down the left side
+            (ohs[8] == ecks and ohs[5] == ecks and ohs[2] == ecks) or     # down the middle
+            (ohs[9] == ecks and ohs[6] == ecks and ohs[3] == ecks) or     # down the right side
+            (ohs[7] == ecks and ohs[5] == ecks and ohs[3] == ecks) or     # diagonal
+            (ohs[9] == ecks and ohs[5] == ecks and ohs[1] == ecks))       # diagonal
 
 
     def checkLost():
@@ -63,8 +76,6 @@ class TicTacToe():
 
         while not self.gameIsDone:
             self.displayboard()
-
-
 
 
 def main():
