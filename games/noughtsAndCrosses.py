@@ -18,15 +18,28 @@ class TicTacToe():
         print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
         print('   |   |')
 
+        def playerLetter():
+            #player can choose their letter
+
+            letter = ''
+            while not (letter == 'X' or letter == '0'):
+                print("Would you like to be X or O?: ")
+                letter = input().upper()
+
+            if letter == 'X':
+                return ['X', 'O']
+            else:
+                return ['O', 'X']
+            
     def startingMove():
         if random.randint(0, 1) == 1:
             return 'player'
         else:
             return 'comp'
 
-    def getTurn(self, already_played):
+    def getTurn(self, letter, already_played):
         while True:
-            print("Where would you like to play (X)")
+            print(f"Where would you like to play ({letter})")
             play = input()
             if len(play) != 1:
                 print('Please enter a single number.')
