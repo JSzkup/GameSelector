@@ -6,6 +6,8 @@ class TicTacToe():
         #initiate the program
 
     def displayBoard(board):
+        # The board is a list of 10 strings ignoring 0 to make it 
+        # easier on the user when choosing a spot on the board
         print('   |   |')
         print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
         print('   |   |')
@@ -18,58 +20,85 @@ class TicTacToe():
         print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
         print('   |   |')
 
-        def playerLetter():
-            #player can choose their letter
+    def playerLetter():
+        #player can choose their letter
 
-            letter = ''
-            while not (letter == 'X' or letter == '0'):
-                print("Would you like to be X or O?: ")
-                letter = input().upper()
+        letter = ''
+        while not (letter == 'X' or letter == '0'):
+            print("Would you like to be X or O?: ")
+            letter = input().upper()
 
-            if letter == 'X':
-                return ['X', 'O']
-            else:
-                return ['O', 'X']
+        if letter == 'X':
+            return ['X', 'O']
+        else:
+            return ['O', 'X']
+
+        return letter  # might not work returning a list and a variable
             
-    def startingMove():
+    def whoStarts():
         if random.randint(0, 1) == 1:
             return 'player'
         else:
             return 'comp'
 
-    def getTurn(self, letter, already_played):
-        while True:
-            print(f"Where would you like to play ({letter})")
-            play = input()
-            if len(play) != 1:
-                print('Please enter a single number.')
-            elif play in already_played: # TODO make sure spots on the board are taken up with this variable once played
-                print('That spot is not empty. Choose again.')
-            elif play not in '0123456678':
-                print('Please enter a NUMBER.')
-            else:
-                return play
+    def drawBoard(board, letter, play):
+        board[play] = letter
 
-    def aiTurn(self, already_played):
-        while True:
-            aiPlay = random.randint(0,9)
-            if aiPlay in already_played:
-                aiPlay = random.randint(0,9) # TODO make sure this actually loops until it gets one thats not already played
-            else:
-                return aiPlay
-            
-    def makeMove(board, letter, play, aiplay):
-        board[move] = letter
+    #  def aiTurn(self, already_played):
+    #      while True:
+    #          aiPlay = random.randint(0,9)
+    #          if aiPlay in already_played:
+    #              aiPlay = random.randint(0,9) # TODO make sure this actually loops until it gets one thats not already played
+    #          else:
+    #              return aiPlay
            
-    def endConditions(ecks, ohs):
-        return ((ohs[7] == ecks and ohs[8] == ecks and ohs[9] == ecks) or # across the top
-            (ohs[4] == ecks and ohs[5] == ecks and ohs[6] == ecks) or     # across the middle
-            (ohs[1] == ecks and ohs[2] == ecks and ohs[3] == ecks) or     # across the bottom
-            (ohs[7] == ecks and ohs[4] == ecks and ohs[1] == ecks) or     # down the left side
-            (ohs[8] == ecks and ohs[5] == ecks and ohs[2] == ecks) or     # down the middle
-            (ohs[9] == ecks and ohs[6] == ecks and ohs[3] == ecks) or     # down the right side
-            (ohs[7] == ecks and ohs[5] == ecks and ohs[3] == ecks) or     # diagonal
-            (ohs[9] == ecks and ohs[5] == ecks and ohs[1] == ecks))       # diagonal
+    def endConditions(board, letter):
+        # Given the current board and the players letter, returns true if the player has won
+
+        return ((board[7] == letter and board[8] == letter and board[9] == letter) or # across the top
+            (board[4] == letter and board[5] == letter and board[6] == letter) or     # across the middle
+            (board[1] == letter and board[2] == letter and board[3] == letter) or     # across the bottom
+            (board[7] == letter and board[4] == letter and board[1] == letter) or     # down the left side
+            (board[8] == letter and board[5] == letter and board[2] == letter) or     # down the middle
+            (board[9] == letter and board[6] == letter and board[3] == letter) or     # down the right side
+            (board[7] == letter and board[5] == letter and board[3] == letter) or     # diagonal
+            (board[9] == letter and board[5] == letter and board[1] == letter))       # diagonal
+        
+    def currentBoard(board):
+        # Duplicating the board list and returning the current board
+
+        currentBoard = []
+
+        for i in board:
+            currentBoard.append(i)
+
+        return currentboard
+
+    def isSpaceFree(board, play):
+        return board[play] == ' '
+
+    def getTurn(board):
+        # The players turn
+
+        play =''
+        while play not in '1 2 3 4 5 6 7 8 9'.split() or not in isSpaceFree(board, int(play)):
+            print("Numbers 0-9 make up the board")
+            print(f"Where would you like to play ({letter}): ")
+            play = input()
+
+        return int(play)
+
+
+            # play = input()
+            # if len(play) != 1:
+            #     print('Please enter a single number.')
+            # elif play in already_played: # TODO make sure spots on the board are taken up with this variable once played
+            #     print('That spot is not empty. Choose again.')
+            # elif play not in '0123456678':
+            #     print('Please enter a NUMBER.')
+            # else:
+            #     return play
+    
 
 
     def checkLost():
