@@ -73,7 +73,7 @@ class TicTacToe():
         # The players turn
 
         play =''
-        while play not in '1 2 3 4 5 6 7 8 9'.split() or not in isSpaceFree(board, int(play)):
+        while play not in '1 2 3 4 5 6 7 8 9'.split() or not isSpaceFree(board, int(play)):
             print("Numbers 0-9 make up the board")
             print(f"Where would you like to play ({letter}): ")
             play = input()
@@ -126,11 +126,12 @@ class TicTacToe():
             return chooseRandomPlayFromList(board, [2, 4, 6, 8])
 
     def isBoardFull(board):
-            
+        # Return True if the board is full
 
-    def checkLost():
-
-        return False
+        for i in range(1, 10):
+            if isSpaceFree(board, i):
+                return False
+            return True
 
     def run(self):
         print('''         _______ _          _______             _______         
@@ -143,8 +144,47 @@ class TicTacToe():
         print("                         Press enter to start")
         input()
 
-        while not self.gameIsDone:
-            self.displayboard()
+        theBoard = [' '] * 10
+        playerLetter, computerLetter = inputPlayerLetter()
+        turn = whoStarts()
+        print(f"The {turn} will go first.")
+        gameIsPlaying = True
+
+        while gameIsPlaying:
+            if turn == 'player':
+                drawBoard(theboard)
+                play = getTurn(theBoard)
+                makePlay(theBoard, PlayerLetter, play)
+
+                if isWinner(theBoard, playerLetter):
+                    drawBoard(theBoard)
+                    print("You Win!")
+                    gameIsPlaying = False
+                else:
+                    if isBoardFull(theBoard):
+                        drawBoard(theBoard)
+                        print("The game is a tie")
+                        break
+                    else:
+                        turn = 'computer'
+
+            else:
+                # Computers turn
+                play = getCompTurn(theBoard, computerLetter):
+                makePlay(theBoard, computerLetter, play)
+
+                if isWiner(theBoard, computerLetter):
+                    drawBoard(theBoard)
+                    print("You Lose")
+                    gameIsPlaying = False
+                else:
+                    if isBoardFull(theBoard):
+                        drawBoard(theBoard)
+                        print("The game is a tie")
+                        break
+                    else:
+                        turn = 'player'
+
 
 
 def main():
