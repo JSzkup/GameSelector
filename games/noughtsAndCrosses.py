@@ -1,11 +1,12 @@
 import random
 
-class TicTacToe():
+class TicTacToe:
     def __init__(self):
-        print("INIT")
-        #initiate the program
 
-    def displayBoard(board):
+        self.gameIsDone = False
+
+
+    def drawBoard(self, board):
         # The board is a list of 10 strings ignoring 0 to make it 
         # easier on the user when choosing a spot on the board
         print('   |   |')
@@ -23,8 +24,8 @@ class TicTacToe():
     def playerChar(self):
         #player can choose their letter
 
-        letter = ''
-        while not (letter == 'X' or letter == '0'):
+        self.letter = ''
+        while not (letter == 'X' or letter == 'O'):
             print("Would you like to be X or O?: ")
             letter = input().upper()
 
@@ -32,8 +33,6 @@ class TicTacToe():
             return ['X', 'O']
         else:
             return ['O', 'X']
-
-        return letter  # might not work returning a list and a variable
             
     def whoStarts(self):
         if random.randint(0, 1) == 1:
@@ -41,10 +40,10 @@ class TicTacToe():
         else:
             return 'comp'
 
-    def drawBoard(board, letter, play):
+    def makePlay(self, board, letter, play):
         board[play] = letter
            
-    def endConditions(board, letter):
+    def endConditions(self, board, letter):
         # Given the current board and the players letter, returns true if the player has won
 
         return ((board[7] == letter and board[8] == letter and board[9] == letter) or # across the top
@@ -56,7 +55,7 @@ class TicTacToe():
             (board[7] == letter and board[5] == letter and board[3] == letter) or     # diagonal
             (board[9] == letter and board[5] == letter and board[1] == letter))       # diagonal
         
-    def currentBoard(board):
+    def currentBoard(self, board):
         # Duplicating the board list and returning the current board
 
         currentBoard = []
@@ -66,10 +65,10 @@ class TicTacToe():
 
         return currentboard
 
-    def isSpaceFree(board, play):
+    def isSpaceFree(self, board, play):
         return board[play] == ' '
 
-    def getTurn(board):
+    def getTurn(self, board):
         # The players turn
 
         play =''
@@ -80,7 +79,7 @@ class TicTacToe():
 
         return int(play)
 
-    def chooseRandomPlayFromList(board, alreadyPlayed):
+    def chooseRandomPlayFromList(self, board, alreadyPlayed):
         # Returns a valid move from the pased list on the passed board
         # or returns None if there are no valid moves
 
@@ -94,7 +93,7 @@ class TicTacToe():
         else:
             return None
 
-    def getCompTurn(board, computerletter):
+    def getCompTurn(self, board, computerletter):
         # given the current board and the computers letter, determine where to move
 
         if computerLetter == 'X':
@@ -125,7 +124,7 @@ class TicTacToe():
         # Move on sides if the corners and center are taken up
         return chooseRandomPlayFromList(board, [2, 4, 6, 8])
 
-    def isBoardFull(board):
+    def isBoardFull(self, board):
         # Return True if the board is full
 
         for i in range(1, 10):
@@ -187,14 +186,11 @@ class TicTacToe():
 
 
 
-def main():
-    current_game = TicTacToe()
 
-    current_game.run()
+current_game = TicTacToe()
 
+current_game.run()
 
-if __name__ == "__main__":
-    main()
 
 
 
