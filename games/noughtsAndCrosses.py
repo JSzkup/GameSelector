@@ -24,7 +24,7 @@ class TicTacToe:
     def playerChar(self):
         #player can choose their letter
 
-        self.letter = ''
+        letter = ''
         while not (letter == 'X' or letter == 'O'):
             print("Would you like to be X or O?: ")
             letter = input().upper()
@@ -38,7 +38,7 @@ class TicTacToe:
         if random.randint(0, 1) == 1:
             return 'player'
         else:
-            return 'comp'
+            return 'computer'
 
     def makePlay(self, board, letter, play):
         board[play] = letter
@@ -72,7 +72,7 @@ class TicTacToe:
         # The players turn
 
         play =''
-        while play not in '1 2 3 4 5 6 7 8 9'.split() or not isSpaceFree(board, int(play)):
+        while play not in '1 2 3 4 5 6 7 8 9'.split() or not self.isSpaceFree(board, int(play)):
             print("Numbers 0-9 make up the board")
             print(f"Where would you like to play ({letter}): ")
             play = input()
@@ -85,7 +85,7 @@ class TicTacToe:
 
         possiblePlays = []
         for i in alreadyPlayed:
-            if isSpaceFree(board, i):
+            if self.isSpaceFree(board, i):
                 possiblePlays.append(i)
 
         if len(possiblePlays) != 0:
@@ -93,42 +93,42 @@ class TicTacToe:
         else:
             return None
 
-    def getCompTurn(self, board, computerletter):
+    def getCompTurn(self, board, computerLetter):
         # given the current board and the computers letter, determine where to move
 
-        if computerLetter == 'X':
-            playerLetter = 'O'
+        if self.computerLetter == 'X':
+            self.playerLetter = 'O'
         else:
-            playerLetter = 'X'
+            self.playerLetter = 'X'
 
         # ************
         # AI algorithm
         # ************
         # Check if the player is about to win
         for i in range(1, 10):
-            copy = getCurrentBoard(board)
-            if isSpaceFree(copy, i):
-                makePlay(copy, computerLetter, i)
-                if isWinner(copy, computerLetter):
+            copy = self.getCurrentBoard(board)
+            if self.isSpaceFree(copy, i):
+                self.makePlay(copy, computerLetter, i)
+                if self.isWinner(copy, computerLetter):
                     return i
         
         # Take the corners if they are free (corners are the key to winning tic tac toe)
-        play = chooseRandomPlayFromList(board, [1, 3, 7, 9])
+        play = self.chooseRandomPlayFromList(board, [1, 3, 7, 9])
         if play != None:
             return play
 
         # Take the center if free
-        if isSpaceFree(board, 5):
+        if self.isSpaceFree(board, 5):
             return 5
 
         # Move on sides if the corners and center are taken up
-        return chooseRandomPlayFromList(board, [2, 4, 6, 8])
+        return self.chooseRandomPlayFromList(board, [2, 4, 6, 8])
 
     def isBoardFull(self, board):
         # Return True if the board is full
 
         for i in range(1, 10):
-            if isSpaceFree(board, i):
+            if self.isSpaceFree(board, i):
                 return False
             return True
 
@@ -144,24 +144,23 @@ class TicTacToe:
         print("make sure to change this to input")
 
         theBoard = [' '] * 10
-        playerLetter, computerLetter = playerChar()
-        turn = whoStarts()
+        playerLetter, computerLetter = self.playerChar()
+        turn = self.whoStarts()
         print(f"The {turn} will go first.")
-        gameIsPlaying = True
 
-        while gameIsPlaying:
+        while not self.gameIsDone:
             if turn == 'player':
-                drawBoard(theboard)
-                play = getTurn(theBoard)
-                makePlay(theBoard, PlayerLetter, play)
+                self.drawBoard(theBoard)
+                play = self.getTurn(theBoard)
+                self.makePlay(theBoard, PlayerLetter, play)
 
-                if isWinner(theBoard, playerLetter):
-                    drawBoard(theBoard)
+                if self.isWinner(theBoard, playerLetter):
+                    self.drawBoard(theBoard)
                     print("You Win!")
                     gameIsPlaying = False
                 else:
-                    if isBoardFull(theBoard):
-                        drawBoard(theBoard)
+                    if self.isBoardFull(theBoard):
+                        self.drawBoard(theBoard)
                         print("The game is a tie")
                         break
                     else:
@@ -169,16 +168,16 @@ class TicTacToe:
 
             else:
                 # Computers turn
-                play = getCompTurn(theBoard, computerLetter)
-                makePlay(theBoard, computerLetter, play)
+                play = self.getCompTurn(theBoard, computerLetter)
+                self.makePlay(theBoard, computerLetter, play)
 
-                if isWiner(theBoard, computerLetter):
-                    drawBoard(theBoard)
+                if self.isWinner(theBoard, computerLetter):
+                    self.drawBoard(theBoard)
                     print("You Lose")
                     gameIsPlaying = False
                 else:
-                    if isBoardFull(theBoard):
-                        drawBoard(theBoard)
+                    if self.isBoardFull(theBoard):
+                        self.drawBoard(theBoard)
                         print("The game is a tie")
                         break
                     else:
