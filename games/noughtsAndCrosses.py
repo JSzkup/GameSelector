@@ -11,7 +11,7 @@ class TicTacToe:
         # The board is a list of 10 strings ignoring 0 to make it 
         # easier on the user when choosing a spot on the board
         print('   |   |')
-        print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
+        print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
         print('   |   |')
         print('-----------')
         print('   |   |')
@@ -19,7 +19,7 @@ class TicTacToe:
         print('   |   |')
         print('-----------')
         print('   |   |')
-        print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+        print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
         print('   |   |')
 
     def playerChar(self):
@@ -47,14 +47,14 @@ class TicTacToe:
     def endConditions(self, board, letter):
         # Given the current board and the players letter, returns true if the player has won
 
-        return ((board[7] == letter and board[8] == letter and board[9] == letter) or # across the top
+        return ((board[1] == letter and board[2] == letter and board[3] == letter) or # across the top
             (board[4] == letter and board[5] == letter and board[6] == letter) or     # across the middle
-            (board[1] == letter and board[2] == letter and board[3] == letter) or     # across the bottom
-            (board[7] == letter and board[4] == letter and board[1] == letter) or     # down the left side
-            (board[8] == letter and board[5] == letter and board[2] == letter) or     # down the middle
-            (board[9] == letter and board[6] == letter and board[3] == letter) or     # down the right side
-            (board[7] == letter and board[5] == letter and board[3] == letter) or     # diagonal
-            (board[9] == letter and board[5] == letter and board[1] == letter))       # diagonal
+            (board[7] == letter and board[8] == letter and board[9] == letter) or     # across the bottom
+            (board[1] == letter and board[4] == letter and board[7] == letter) or     # down the left side
+            (board[2] == letter and board[5] == letter and board[8] == letter) or     # down the middle
+            (board[3] == letter and board[6] == letter and board[9] == letter) or     # down the right side
+            (board[1] == letter and board[5] == letter and board[9] == letter) or     # diagonal
+            (board[3] == letter and board[5] == letter and board[7] == letter))       # diagonal
         
     def currentBoard(self, board):
         # Duplicating the board list and returning the current board
@@ -74,7 +74,7 @@ class TicTacToe:
 
         play =''
         while play not in '1 2 3 4 5 6 7 8 9'.split() or not self.isSpaceFree(board, int(play)):
-            print("Numbers 0-9 make up the board")
+            print("Numbers 1-9 make up the board")
             print(f"Where would you like to play ({self.letter}): ") # TODO have this show what letter the player currently is
             play = input()
 
@@ -131,7 +131,7 @@ class TicTacToe:
         for i in range(1, 10):
             if self.isSpaceFree(board, i):
                 return False
-            return True
+        return True
 
     def run(self):
         print('''         _______ _          _______             _______         

@@ -1,4 +1,5 @@
 from games.gallows import *
+from games.noughtsandcrosses import *
 
 def play_again():
     # Returns True if the player wants to play again, false otherwise
