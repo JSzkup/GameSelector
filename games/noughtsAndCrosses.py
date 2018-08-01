@@ -4,6 +4,7 @@ class TicTacToe:
     def __init__(self):
 
         self.gameIsDone = False
+        self.letter = ''
 
 
     def drawBoard(self, board):
@@ -63,7 +64,7 @@ class TicTacToe:
         for i in board:
             currentBoard.append(i)
 
-        return currentboard
+        return currentBoard
 
     def isSpaceFree(self, board, play):
         return board[play] == ' '
@@ -74,7 +75,7 @@ class TicTacToe:
         play =''
         while play not in '1 2 3 4 5 6 7 8 9'.split() or not self.isSpaceFree(board, int(play)):
             print("Numbers 0-9 make up the board")
-            print(f"Where would you like to play ({letter}): ")
+            print(f"Where would you like to play ({self.letter}): ") # TODO have this show what letter the player currently is
             play = input()
 
         return int(play)
@@ -96,20 +97,20 @@ class TicTacToe:
     def getCompTurn(self, board, computerLetter):
         # given the current board and the computers letter, determine where to move
 
-        if self.computerLetter == 'X':
-            self.playerLetter = 'O'
+        if computerLetter == 'X':
+            playerLetter = 'O'
         else:
-            self.playerLetter = 'X'
+            playerLetter = 'X'
 
         # ************
         # AI algorithm
         # ************
         # Check if the player is about to win
         for i in range(1, 10):
-            copy = self.getCurrentBoard(board)
+            copy = self.currentBoard(board)
             if self.isSpaceFree(copy, i):
                 self.makePlay(copy, computerLetter, i)
-                if self.isWinner(copy, computerLetter):
+                if self.endConditions(copy, computerLetter):
                     return i
         
         # Take the corners if they are free (corners are the key to winning tic tac toe)
@@ -152,9 +153,9 @@ class TicTacToe:
             if turn == 'player':
                 self.drawBoard(theBoard)
                 play = self.getTurn(theBoard)
-                self.makePlay(theBoard, PlayerLetter, play)
+                self.makePlay(theBoard, playerLetter, play)
 
-                if self.isWinner(theBoard, playerLetter):
+                if self.endConditions(theBoard, playerLetter):
                     self.drawBoard(theBoard)
                     print("You Win!")
                     gameIsPlaying = False
@@ -171,7 +172,7 @@ class TicTacToe:
                 play = self.getCompTurn(theBoard, computerLetter)
                 self.makePlay(theBoard, computerLetter, play)
 
-                if self.isWinner(theBoard, computerLetter):
+                if self.endConditions(theBoard, computerLetter):
                     self.drawBoard(theBoard)
                     print("You Lose")
                     gameIsPlaying = False
@@ -190,7 +191,10 @@ current_game = TicTacToe()
 
 current_game.run()
 
-
+# TODO Game doesnt end when you Win, not sure about lose
+# Game doesnt even end when all of the board is full
+# TODO ai is pretty bad, all of it might not work
+# TODO show the numbers of each spot on the board, and preferably reverse them to be 1 - 9 starting from topleft
 
 
 
