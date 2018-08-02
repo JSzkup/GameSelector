@@ -158,7 +158,7 @@ class TicTacToe:
                 if self.endConditions(theBoard, playerLetter):
                     self.drawBoard(theBoard)
                     print("You Win!")
-                    gameIsPlaying = False
+                    gameIsDone = False
                 else:
                     if self.isBoardFull(theBoard):
                         self.drawBoard(theBoard)
@@ -175,7 +175,7 @@ class TicTacToe:
                 if self.endConditions(theBoard, computerLetter):
                     self.drawBoard(theBoard)
                     print("You Lose")
-                    gameIsPlaying = False
+                    gameIsDone = False
                 else:
                     if self.isBoardFull(theBoard):
                         self.drawBoard(theBoard)
