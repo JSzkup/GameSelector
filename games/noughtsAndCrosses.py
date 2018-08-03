@@ -3,7 +3,7 @@ import random
 class TicTacToe:
     def __init__(self):
 
-        self.gameIsDone = False
+        self.gameIsPlaying = True
         self.letter = ''
 
 
@@ -149,7 +149,7 @@ class TicTacToe:
         turn = self.whoStarts()
         print(f"The {turn} will go first.")
 
-        while not self.gameIsDone:
+        while self.gameIsPlaying:
             if turn == 'player':
                 self.drawBoard(theBoard)
                 play = self.getTurn(theBoard)
@@ -158,7 +158,7 @@ class TicTacToe:
                 if self.endConditions(theBoard, playerLetter):
                     self.drawBoard(theBoard)
                     print("You Win!")
-                    gameIsDone = False
+                    self.gameIsPlaying = False
                 else:
                     if self.isBoardFull(theBoard):
                         self.drawBoard(theBoard)
@@ -175,7 +175,7 @@ class TicTacToe:
                 if self.endConditions(theBoard, computerLetter):
                     self.drawBoard(theBoard)
                     print("You Lose")
-                    gameIsDone = False
+                    self.gameIsPlaying = False
                 else:
                     if self.isBoardFull(theBoard):
                         self.drawBoard(theBoard)
