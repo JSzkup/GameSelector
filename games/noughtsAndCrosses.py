@@ -2,6 +2,7 @@ import random
 
 class TicTacToe:
     def __init__(self):
+        # Sets the game state and initializing letter variable
 
         self.gameIsPlaying = True
         self.letter = ''
@@ -97,11 +98,6 @@ class TicTacToe:
     def getCompTurn(self, board, computerLetter):
         # given the current board and the computers letter, determine where to move
 
-        # if computerLetter == 'X':
-        #     playerLetter = 'O'
-        # else:
-        #     playerLetter = 'X'
-
         # ************
         # AI algorithm
         # ************
@@ -191,7 +187,7 @@ current_game = TicTacToe()
 
 current_game.run()
 
-# TODO show the numbers of each spot on the board, and preferably reverse them to be 1 - 9 starting from topleft
+# TODO show the numbers of each spot on the board
 
 
 

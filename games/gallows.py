@@ -74,7 +74,7 @@ class Hangman:
         print(HANGMANPICS[len(self.missedLetters)])
         print()
 
-        print('Missed letters:', end=' ')
+        print("Missed letters:", end=' ')
         for letter in self.missedLetters:
             print(letter, end=' ')
         print()
@@ -98,14 +98,14 @@ class Hangman:
         # the letter entered is not already guessed by the user
 
         while True:
-            print('Guess a letter.')
+            print("Guess a letter.")
             guess = input().lower()
             if len(guess) != 1:
-                print('Please enter a single letter.')
+                print("Please enter a single letter.")
             elif guess in already_guessed:
-                print('You have already guessed that letter. Choose again.')
+                print("You have already guessed that letter. Choose again.")
             elif guess not in 'abcdefghijklmnopqrstuvwxyz':
-                print('Please enter a LETTER.')
+                print("Please enter a LETTER.")
             else:
                 return guess
 
@@ -117,8 +117,8 @@ class Hangman:
             if self.secretWord[i] not in self.correctLetters:
                 return False
 
-        print('Yes! The secret word is "{0}"! '
-               'You have won!'.format(self.secretWord))
+        print(f"Yes! The secret word is {self.secretWord}!")
+        print("You have won!")
 
         return True
 
@@ -132,9 +132,8 @@ class Hangman:
             missed = len(self.missedLetters)
             correct = len(self.correctLetters)
             word = self.secretWord
-            print('You have run out of guesses!')
-            print('After {0} missed guesses and {1} correct guesses, '
-                   'the word was "{2}"'.format(missed, correct, word))
+            print("You have run out of guesses!")
+            print(f"After {missed} missed guesses and {correct} correct guesses, the word was \"{word}\"")
 
             return True
 
