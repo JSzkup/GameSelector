@@ -97,10 +97,10 @@ class TicTacToe:
     def getCompTurn(self, board, computerLetter):
         # given the current board and the computers letter, determine where to move
 
-        if computerLetter == 'X':
-            playerLetter = 'O'
-        else:
-            playerLetter = 'X'
+        # if computerLetter == 'X':
+        #     playerLetter = 'O'
+        # else:
+        #     playerLetter = 'X'
 
         # ************
         # AI algorithm
@@ -191,9 +191,6 @@ current_game = TicTacToe()
 
 current_game.run()
 
-# TODO Game doesnt end when you Win, not sure about lose
-# Game doesnt even end when all of the board is full
-# TODO ai is pretty bad, all of it might not work
 # TODO show the numbers of each spot on the board, and preferably reverse them to be 1 - 9 starting from topleft
 
 
