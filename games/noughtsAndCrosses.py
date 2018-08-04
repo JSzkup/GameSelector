@@ -1,6 +1,6 @@
 import random
 
-class TicTacToe:
+class TicTacToe():
     def __init__(self):
         # Sets the game state and initializing letter variable
 
@@ -97,7 +97,6 @@ class TicTacToe:
 
     def getCompTurn(self, board, computerLetter):
         # given the current board and the computers letter, determine where to move
-
         # ************
         # AI algorithm
         # ************
@@ -181,17 +180,4 @@ class TicTacToe:
                         turn = 'player'
 
 
-
-
-current_game = TicTacToe()
-
-current_game.run()
-
 # TODO show the numbers of each spot on the board
-
-
-
-
-# https://inventwithpython.com/chapter10.html
-# https://codereview.stackexchange.com/questions/108738/python-tic-tac-toe-game
-# http://patorjk.com/software/taag/

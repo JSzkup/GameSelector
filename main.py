@@ -1,34 +1,37 @@
 from games.gallows import *
-from games.noughtsandcrosses import *
+from games.noughtsAndCrosses import *
 
 def play_again():
     # Returns True if the player wants to play again, false otherwise
 
+    print()
     print('Do you want to play again? (yes or no)')
     return input().lower() == 'yes'
 
 
 def main():
     # Main application entry point
+    hangman = Hangman(words)
+    ticTacToe = TicTacToe()
 
-    # TODO Find out WHY this doesnt work
-    # print("What game would you like to play?")
-    # print("1. Hangman")
-    # print("2. Tic-Tac-Toe")
-    # print()
-    # game = input("please press the number of the game youd like to play then press enter: ")
-    # 
-    # if game == 1:
-    #     current_game = Hangman(words)
-    # elif game == 2:
-    #     current_game = TicTacToe()
+    game = 0
+    while game not in '1 2'.split():
+        print("What game would you like to play?")
+        print("1. Hangman")
+        print("2. Tic-Tac-Toe")
+        print()
+        game = input("please press the number of the game youd like to play then press enter: ")
+    
 
-    current_game = Hangman(words)
+    if game == 1:
+        currentGame = hangman
+    else:
+        currentGame = ticTacToe
 
     while True:
-        current_game.run()
+        currentGame.run()
         if play_again():
-            current_game = Hangman(words)
+            currentGame.run()
         else:
             break
 
@@ -39,3 +42,5 @@ if __name__ == "__main__":
 # Other Game Ideas
 # Chess
 # Checkers
+
+# http://patorjk.com/software/taag/
