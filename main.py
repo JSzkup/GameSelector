@@ -20,9 +20,9 @@ def main():
         print("1. Hangman")
         print("2. Tic-Tac-Toe")
         print()
-        game = input("please press the number of the game youd like to play then press enter: ")
+        game = input("please press the number of the game you'd like to play then press enter: ")
     
-
+    game = int(game)
     if game == 1:
         currentGame = hangman
     else:
@@ -37,6 +37,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+ # TODO find out why main() wont select hangman
+ ## Hangman
+ #  
+ ## Tictactoe
+ # TODO show the numbers of each spot on the board
 
 
 # Other Game Ideas

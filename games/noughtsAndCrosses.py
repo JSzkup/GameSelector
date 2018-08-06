@@ -179,5 +179,3 @@ class TicTacToe():
                     else:
                         turn = 'player'
 
-
-# TODO show the numbers of each spot on the board
